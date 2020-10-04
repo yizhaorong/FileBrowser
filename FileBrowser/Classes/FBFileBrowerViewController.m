@@ -86,6 +86,22 @@ static NSString *kRootPath;
     }];
 }
 
+- (void)showOperationsWithFile:(FBFile *)file {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:file.name message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        if ([[NSFileManager defaultManager] removeItemAtPath:file.path error:nil]) {
+            [self setupWithPath:self.path];
+        }
+    }];
+    UIAlertAction *openAction = [UIAlertAction actionWithTitle:@"打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIDocumentInteractionController *documentVC = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:file.path]];
+        [documentVC presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+    }];
+    [alertController addAction:deleteAction];
+    [alertController addAction:openAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -108,8 +124,7 @@ static NSString *kRootPath;
         FBFileBrowerViewController *vc = [[FBFileBrowerViewController alloc] initWithPath:file.path];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        UIDocumentInteractionController *documentVC = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:file.path]];
-        [documentVC presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+        [self showOperationsWithFile:file];
     }
     
 }
