@@ -238,6 +238,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = yizhaorong;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = JG8HG83X27;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -465,9 +468,11 @@
 			baseConfigurationReference = FB47ACDD215089E0B0DCBC45 /* Pods-FileBrowser_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JG8HG83X27;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FileBrowser/FileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "FileBrowser/FileBrowser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,9 +486,11 @@
 			baseConfigurationReference = CFC4B12ADB54372B7D555F12 /* Pods-FileBrowser_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JG8HG83X27;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FileBrowser/FileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "FileBrowser/FileBrowser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

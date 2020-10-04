@@ -51,8 +51,10 @@ static NSString *kRootPath;
 - (void)setupWithPath:(NSString *)path {
     if ([NSFileManager fb_fileExistsAtPath:path]) {
         _path = path;
+        self.title = [path lastPathComponent];
     } else {
         _path = kRootPath;
+        self.title = @"home";
     }
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

@@ -24,6 +24,17 @@
             _detail = [NSString stringWithFormat:@"共%ld项", [NSFileManager fb_fileListAtPath:path].count];
         } else {
             NSString *fileType = [[_name componentsSeparatedByString:@"."].lastObject lowercaseString];
+            long long size = [NSFileManager fb_fileSizeAtPath:path];
+            if (size >= FB_ONE_GB) {
+                _detail = [NSString stringWithFormat:@"%.1fGB", size / FB_ONE_GB];
+            } else if (size >= FB_ONE_MB) {
+                _detail = [NSString stringWithFormat:@"%.1fMB", size / FB_ONE_MB];
+            } else if (size >= FB_ONE_KB) {
+                _detail = [NSString stringWithFormat:@"%.1fKB", size / FB_ONE_KB];
+            } else {
+                _detail = [NSString stringWithFormat:@"%lld字节", size];
+            }
+            
             if (fileType.length > 2) {
                 static NSArray *images;
                 static NSArray *videos;
@@ -34,6 +45,7 @@
                 });
                 if ([images containsObject:fileType]) {
                     fileType = @"image";
+                    _icon = [UIImage imageWithContentsOfFile:path];
                 } else if ([videos containsObject:fileType]) {
                     fileType = @"video";
                 } else {
@@ -41,19 +53,12 @@
                 }
                 
             }
-            _icon = [UIImage fb_imageNamed:fileType];
+            
             if (!_icon) {
-                _icon = [UIImage fb_imageNamed:@"unknown"];
-            }
-            long long size = [NSFileManager fb_fileSizeAtPath:path];
-            if (size >= FB_ONE_GB) {
-                _detail = [NSString stringWithFormat:@"%.1fGB", size / FB_ONE_GB];
-            } else if (size >= FB_ONE_MB) {
-                _detail = [NSString stringWithFormat:@"%.1fMB", size / FB_ONE_MB];
-            } else if (size >= FB_ONE_KB) {
-                _detail = [NSString stringWithFormat:@"%.1fKB", size / FB_ONE_KB];
-            } else {
-                _detail = [NSString stringWithFormat:@"%lld字节", size];
+                _icon = [UIImage fb_imageNamed:fileType];
+                if (!_icon) {
+                    _icon = [UIImage fb_imageNamed:@"unknown"];
+                }
             }
         }
     }

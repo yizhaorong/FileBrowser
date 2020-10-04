@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'FileBrowser'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of FileBrowser.'
+  s.summary          = 'iOS文件浏览器'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+iOS文件浏览器，用于浏览沙盒文件列表
                        DESC
 
   s.homepage         = 'https://github.com/yizhaorong/FileBrowser'
@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
      'FileBrowser' => ['FileBrowser/Assets/*']
    }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+   s.public_header_files = 'FileBrowser/Classes/FBFileBrowerViewController.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Masonry'
 end
