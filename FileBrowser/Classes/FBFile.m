@@ -51,9 +51,11 @@
                 } else {
                     fileType = [fileType substringToIndex:3];
                 }
-                
             }
             
+            if ([fileType isEqualToString:@"md"]) {
+                _type = FBFileTypeMarkdown;
+            }
             if (!_icon) {
                 _icon = [UIImage fb_imageNamed:fileType];
                 if (!_icon) {
