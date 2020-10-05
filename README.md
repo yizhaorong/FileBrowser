@@ -7,7 +7,18 @@
 
 ## Example
 
+![演示](images/demo.gif)
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+使用方法
+
+```objective-c
+FBFileBrowerViewController *vc = [FBFileBrowerViewController new];
+[self.navigationController pushViewController:vc animated:YES];
+```
+
+
 
 ## Requirements
 
@@ -17,7 +28,7 @@ FileBrowser is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'FileBrowser'
+pod 'FileBrowser', :git => 'https://github.com/yizhaorong/FileBrowser.git'
 ```
 
 ## Author
