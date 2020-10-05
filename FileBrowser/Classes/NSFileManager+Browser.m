@@ -21,7 +21,7 @@
     return _rootPath;
 }
 
-- (NSString *)fb_appPath {
++ (NSString *)fb_appPath {
     static NSString *_appPath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -39,7 +39,7 @@
     return _appPath;
 }
 
-- (NSString *)fb_docPath {
++ (NSString *)fb_docPath {
     static NSString *_docPath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -49,7 +49,7 @@
     return _docPath;
 }
 
-- (NSString *)fb_libPrefPath {
++ (NSString *)fb_libPrefPath {
     static NSString *_libPrefPath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -61,7 +61,7 @@
     return _libPrefPath;
 }
 
-- (NSString *)fb_libCachePath {
++ (NSString *)fb_libCachePath {
     static NSString *_libCachePath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -73,7 +73,7 @@
     return _libCachePath;
 }
 
-- (NSString *)fb_tmpPath {
++ (NSString *)fb_tmpPath {
     static NSString *_tmpPath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -140,10 +140,10 @@
     if (![manager fileExistsAtPath:path]) {
         return @[];
     }
+    
     NSMutableArray *fileList = [NSMutableArray array];
-    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:path] objectEnumerator];
-    NSString *fileName;
-    while ((fileName = [childFilesEnumerator nextObject]) != nil) {
+    NSArray *fileNames = [manager contentsOfDirectoryAtPath:path error:nil];
+    for (NSString *fileName in fileNames) {
         NSString *fileAbsolutePath = [path stringByAppendingPathComponent:fileName];
         [fileList addObject:fileAbsolutePath];
     }

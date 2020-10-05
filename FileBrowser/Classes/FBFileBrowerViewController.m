@@ -7,7 +7,6 @@
 
 #import "FBFileBrowerViewController.h"
 #import "FBFileCell.h"
-#import "FBFile.h"
 #import "NSFileManager+Browser.h"
 #import <Masonry/Masonry.h>
 
@@ -97,8 +96,11 @@ static NSString *kRootPath;
         UIDocumentInteractionController *documentVC = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:file.path]];
         [documentVC presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
     }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:deleteAction];
     [alertController addAction:openAction];
+    [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -122,11 +124,16 @@ static NSString *kRootPath;
     FBFile *file = self.paths[indexPath.row];
     if (file.type == FBFileTypeDirectory) {
         FBFileBrowerViewController *vc = [[FBFileBrowerViewController alloc] initWithPath:file.path];
+        vc.delegate = self.delegate;
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        [self showOperationsWithFile:file];
+        if ([self.delegate respondsToSelector:@selector(fileBrowser:didSelectedFile:)]) {
+            [self.delegate fileBrowser:self didSelectedFile:file];
+        } else {
+            [self showOperationsWithFile:file];
+        }
+        
     }
-    
 }
 
 #pragma mark - Setters And Getters

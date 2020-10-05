@@ -36,7 +36,7 @@ iOS文件浏览器，用于浏览沙盒文件列表
      'FileBrowser' => ['FileBrowser/Assets/*']
    }
 
-   s.public_header_files = 'FileBrowser/Classes/FBFileBrowerViewController.h'
+   s.public_header_files = 'FileBrowser/Classes/{FBFileBrowerViewController,FBFile}.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Masonry'
 end

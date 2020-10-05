@@ -20,27 +20,27 @@
 /**
  应用目录
  */
-@property (nonatomic, readonly) NSString *fb_appPath;
+@property (nonatomic, class, readonly) NSString *fb_appPath;
 
 /**
  文档目录
  */
-@property (nonatomic, readonly) NSString *fb_docPath;
+@property (nonatomic, class, readonly) NSString *fb_docPath;
 
 /**
  信号设置目录
  */
-@property (nonatomic, readonly) NSString *fb_libPrefPath;
+@property (nonatomic, class, readonly) NSString *fb_libPrefPath;
 
 /**
  缓存目录
  */
-@property (nonatomic, readonly) NSString *fb_libCachePath;
+@property (nonatomic, class, readonly) NSString *fb_libCachePath;
 
 /**
  缓存目录
  */
-@property (nonatomic, readonly) NSString *fb_tmpPath;
+@property (nonatomic, class, readonly) NSString *fb_tmpPath;
 
 /**
  创建文件
